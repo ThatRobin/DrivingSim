@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0b66106e1776c4a5da1207e76c310303
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 165180
+  packageName: MapMagic 2
+  packageVersion: 2.1.14
+  assetPath: Assets/MapMagic/Tools/Plugins/NativePlugins.bundle/Contents/Info.plist
+  uploadId: 595335
