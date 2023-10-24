@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 477f7f9f5d3f84812bccd9d4d83b07e5
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 165180
+  packageName: MapMagic 2
+  packageVersion: 2.1.14
+  assetPath: Assets/MapMagic/Tools/Plugins/NativePlugins.bundle/Contents/_CodeSignature/CodeResources
+  uploadId: 595335
