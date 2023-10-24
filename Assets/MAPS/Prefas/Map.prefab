@@ -21038,7 +21038,7 @@ MonoBehaviour:
   coord:
     x: -1
     z: 1
-  distance: 0
+  distance: 1.5
   preview: 1
   defaultTerrainData: {fileID: 0}
   objectsPool: {fileID: 921768313893999488}
@@ -33133,7 +33133,7 @@ MonoBehaviour:
   terrainCellAngleThreshold: 30
   terrainCellHeightThreshold: 25
   maxIndentSurrounding: 50
-  terrainY: 0
+  terrainY: -10000
   terrainDetailSplatX: 50
   terrainDetailSplatY: 50
   detailOffsetVec: {x: 50, y: 0, z: 50}
