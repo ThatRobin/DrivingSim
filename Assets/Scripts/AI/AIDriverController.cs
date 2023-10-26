@@ -50,7 +50,7 @@ public class AIDriverController : MonoBehaviour {
         MoveToCenter();
         AlignWithOthers();
         AvoidOtherBoids();
-        transform.LookAt(guide.position);
+        //transform.LookAt(new Vector3(guide.position.x, this.transform.position.y, guide.position.z));
         //transform.Translate((direction) * (speed * Time.deltaTime));
         //agent.SetDestination(direction + transform.position);
         agent.SetDestination(guide.position);
