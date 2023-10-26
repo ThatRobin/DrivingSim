@@ -39,7 +39,7 @@ public class AIDriverController : MonoBehaviour {
         agent.acceleration = componentHolder.acceleration;
         agent.speed = componentHolder.maximumSpeed;
         
-        foreach (AIDriverController driver in GameObject.FindObjectsOfType<AIDriverController>()) {
+        foreach (AIDriverController driver in GameObject.FindObjectsByType(typeof(AIDriverController), FindObjectsSortMode.None)) {
             if(driver != this) {
                 boidsInScene.Add(driver);
             }
