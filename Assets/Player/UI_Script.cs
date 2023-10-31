@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityTutorial.Manager;
 
@@ -18,7 +19,7 @@ public class UI_Script : MonoBehaviour
     public float Speed;
 
     //Rotations of the needles
-    private float GstartPosition = 80f, GendPosiotion = -140;
+    private  float GstartPosition = 80f, GendPosiotion = -140;
     private float SMeterStartP = 140f, SMeterEndP = -140f;
 
     private float Max_NeedleSpeed;
@@ -32,18 +33,29 @@ public class UI_Script : MonoBehaviour
     public TextMeshProUGUI DisplayGear;
 
     public GameObject[] Gears;
+    public Transform SteeringWheel;
+    public Image EngineUI;
 
     private void Update()
     {
         //Display the UI information
         DisplaySpeed.text = "Speed: "+Car.Current_Speed.ToString("0") +"Km/h";
         DisplayRev.text = "Engine Rev: "+Car.currentRPM.ToString("0,00")+"RPM";
-        //DisplayGear.text = "Gear: " +Car.CurrentGear.ToString();
+        DisplayGear.text = "Gear: " +Car.CurrentGearValue.ToString();
 
         GetSpeedGauge();
         GetSpeed();
         Input(); 
         GearHandler();
+
+        if (Car.isEngineOn)
+        {
+            EngineUI.color = Color.green;
+        }
+        else
+        {
+            EngineUI.color = Color.red;
+        }
 
         //Handle Gauge Acceleration and Deceleration
         if (GaugeNeedleSpeed > Max_NeedleSpeed)
@@ -75,6 +87,9 @@ public class UI_Script : MonoBehaviour
         GNeedle.transform.eulerAngles = new Vector3(0f, 0f, GetSpeedGauge());
         SNeedle.transform.eulerAngles = new Vector3(0f, 0f, GetSpeed());
 
+        SteeringWheel.transform.eulerAngles = new Vector3(0f,0f,inputManager.Turn.x * 45f);
+        Debug.Log(inputManager.Turn.x);
+
     }
 
     private void Awake()
@@ -86,9 +101,70 @@ public class UI_Script : MonoBehaviour
 
     private void GearHandler()
     {
-        //int CurrentGear = Car.CurrentGear;
-        
-        // In Development 
+        int CurrentGear = Car.CurrentGearValue;
+
+        if(CurrentGear == 0)
+        {
+            Gears[CurrentGear].SetActive(true);
+        }
+        else
+        {
+            Gears[0].SetActive(false);
+        }
+
+        if (CurrentGear == 01)
+        {
+            Gears[CurrentGear].SetActive(true);
+        }
+        else
+        {
+            Gears[1].SetActive(false);
+        }
+
+        if (CurrentGear == 2)
+        {
+            Gears[CurrentGear].SetActive(true);
+        }
+        else
+        {
+            Gears[2].SetActive(false);
+        }
+
+        if (CurrentGear == 3)
+        {
+            Gears[CurrentGear].SetActive(true);
+        }
+        else
+        {
+            Gears[3].SetActive(false);
+        }
+
+        if (CurrentGear == 4)
+        {
+            Gears[CurrentGear].SetActive(true);
+        }
+        else
+        {
+            Gears[4].SetActive(false);
+        }
+
+        if (CurrentGear == 5)
+        {
+            Gears[CurrentGear].SetActive(true);
+        }
+        else
+        {
+            Gears[5].SetActive(false);
+        }
+
+        if (CurrentGear == 6)
+        {
+            Gears[CurrentGear].SetActive(true);
+        }
+        else
+        {
+            Gears[6].SetActive(false);
+        }
     }
 
     private float GetSpeedGauge()
@@ -111,9 +187,15 @@ public class UI_Script : MonoBehaviour
     {
         
         GetSpeedMomentum = Car.Current_Speed;
+        float getfloatAngle = GetSpeedMomentum + SMeterStartP;
+        SpeedNeedle += GetSpeedMomentum * Time.deltaTime;
 
-        float SetSpeed = GetSpeedMomentum + SMeterStartP;
-        SpeedNeedle += SetSpeed * Time.deltaTime;
+        if(getfloatAngle < 140)
+        {
+            SpeedNeedle += 20 * Time.deltaTime;
+        }
+
+
 
         float Accelerate = inputManager.Acceleration;
         if(Accelerate == 1)

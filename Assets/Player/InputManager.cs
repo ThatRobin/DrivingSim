@@ -20,9 +20,14 @@ namespace UnityTutorial.Manager
 
         public bool NextGear { get; private set; }
 
+        public bool EngineOnOff { get; private set; }
+
+
         private bool NextGearPressed = false;
 
         private bool PrevGearPressed = false;
+
+        private bool EngineOnOffPressed = false;
 
         private InputActionMap _currentMap;
         private InputAction _TurnAction;
@@ -30,6 +35,12 @@ namespace UnityTutorial.Manager
         private InputAction _BrakeAction;
         private InputAction _BGearAction;
         private InputAction _NGearAction;
+        private InputAction _EngineAction;
+
+        private void Start()
+        {
+            EngineOnOff = true;
+        }
 
         private void Awake()
         {
@@ -40,18 +51,21 @@ namespace UnityTutorial.Manager
             _BrakeAction = _currentMap.FindAction("Brake");
             _BGearAction = _currentMap.FindAction("BackGear");
             _NGearAction = _currentMap.FindAction("NextGear");
+            _EngineAction = _currentMap.FindAction("EngineOn");
 
             _TurnAction.performed += onTurn;
             _AccelerateAction.performed += onAccelerate;
             _BrakeAction.performed += onBrake;
             _BGearAction.performed += onBGear;
             _NGearAction.performed += onNGear;
+            _EngineAction.performed += onEngine;
 
             _TurnAction.canceled += onTurn;
             _AccelerateAction.canceled += onAccelerate;
             _BrakeAction.canceled += onBrake;
             _BGearAction.canceled += onBGear;
             _NGearAction.canceled += onNGear;
+            _EngineAction.canceled += onEngine;
 
         }
 
@@ -70,9 +84,23 @@ namespace UnityTutorial.Manager
             Brake = context.ReadValue<float>();
         }
 
+        private void onEngine(InputAction.CallbackContext context)
+        {
+            if (context.ReadValue<float>() > 0 && !EngineOnOffPressed)
+            {
+                EngineOnOff = !EngineOnOff;
+                EngineOnOffPressed = true;
+            }
+            else
+            {
+                EngineOnOffPressed = false;
+            }
+
+        }
+
         private void onBGear(InputAction.CallbackContext context)
         {
-            if (context.ReadValue<float>() > 0 && !NextGearPressed)
+            if (context.ReadValue<float>() > 0 && !PrevGearPressed)
             {
                 PMovement.CurrentGear--;
                 PMovement.CurrentGear = Mathf.Clamp(PMovement.CurrentGear, 0, 6);

@@ -51,22 +51,13 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "SEngine",
+                    "name": "EngineOn",
                     "type": "Button",
-                    "id": "e7038d0a-ad36-4ce8-9b58-ca8c04acbcd7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Clutch",
-                    "type": "Button",
-                    "id": "dff12b60-15c6-42f5-b676-1ea880dca24d",
+                    "id": "ec03327d-14f5-4e07-8e29-bfc04c05613f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -336,34 +327,23 @@
                 },
                 {
                     "name": "",
-                    "id": "2fb4706d-2e5a-4b0b-8b58-813531299a67",
-                    "path": "<Keyboard>/alt",
+                    "id": "a5646ff7-d145-48d3-b358-e2678ec94ec9",
+                    "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SEngine",
+                    "action": "EngineOn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "dc1a7e8a-8b2e-4742-ac57-553f56f03a68",
+                    "id": "073c3eee-bbdf-4ea5-a21d-90884b2d02d3",
                     "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SEngine",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8dfc6861-429b-42d8-b58f-de7f43536050",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Clutch",
+                    "action": "EngineOn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

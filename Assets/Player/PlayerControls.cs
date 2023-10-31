@@ -73,22 +73,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""SEngine"",
+                    ""name"": ""EngineOn"",
                     ""type"": ""Button"",
-                    ""id"": ""e7038d0a-ad36-4ce8-9b58-ca8c04acbcd7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Clutch"",
-                    ""type"": ""Button"",
-                    ""id"": ""dff12b60-15c6-42f5-b676-1ea880dca24d"",
+                    ""id"": ""ec03327d-14f5-4e07-8e29-bfc04c05613f"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -358,34 +349,23 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""2fb4706d-2e5a-4b0b-8b58-813531299a67"",
-                    ""path"": ""<Keyboard>/alt"",
+                    ""id"": ""a5646ff7-d145-48d3-b358-e2678ec94ec9"",
+                    ""path"": ""<Keyboard>/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SEngine"",
+                    ""action"": ""EngineOn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""dc1a7e8a-8b2e-4742-ac57-553f56f03a68"",
+                    ""id"": ""073c3eee-bbdf-4ea5-a21d-90884b2d02d3"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SEngine"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8dfc6861-429b-42d8-b58f-de7f43536050"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Clutch"",
+                    ""action"": ""EngineOn"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -401,8 +381,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_DrivingSims_Turn = m_DrivingSims.FindAction("Turn", throwIfNotFound: true);
         m_DrivingSims_BackGear = m_DrivingSims.FindAction("BackGear", throwIfNotFound: true);
         m_DrivingSims_NextGear = m_DrivingSims.FindAction("NextGear", throwIfNotFound: true);
-        m_DrivingSims_SEngine = m_DrivingSims.FindAction("SEngine", throwIfNotFound: true);
-        m_DrivingSims_Clutch = m_DrivingSims.FindAction("Clutch", throwIfNotFound: true);
+        m_DrivingSims_EngineOn = m_DrivingSims.FindAction("EngineOn", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -469,8 +448,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_DrivingSims_Turn;
     private readonly InputAction m_DrivingSims_BackGear;
     private readonly InputAction m_DrivingSims_NextGear;
-    private readonly InputAction m_DrivingSims_SEngine;
-    private readonly InputAction m_DrivingSims_Clutch;
+    private readonly InputAction m_DrivingSims_EngineOn;
     public struct DrivingSimsActions
     {
         private @PlayerControls m_Wrapper;
@@ -480,8 +458,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Turn => m_Wrapper.m_DrivingSims_Turn;
         public InputAction @BackGear => m_Wrapper.m_DrivingSims_BackGear;
         public InputAction @NextGear => m_Wrapper.m_DrivingSims_NextGear;
-        public InputAction @SEngine => m_Wrapper.m_DrivingSims_SEngine;
-        public InputAction @Clutch => m_Wrapper.m_DrivingSims_Clutch;
+        public InputAction @EngineOn => m_Wrapper.m_DrivingSims_EngineOn;
         public InputActionMap Get() { return m_Wrapper.m_DrivingSims; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -506,12 +483,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @NextGear.started += instance.OnNextGear;
             @NextGear.performed += instance.OnNextGear;
             @NextGear.canceled += instance.OnNextGear;
-            @SEngine.started += instance.OnSEngine;
-            @SEngine.performed += instance.OnSEngine;
-            @SEngine.canceled += instance.OnSEngine;
-            @Clutch.started += instance.OnClutch;
-            @Clutch.performed += instance.OnClutch;
-            @Clutch.canceled += instance.OnClutch;
+            @EngineOn.started += instance.OnEngineOn;
+            @EngineOn.performed += instance.OnEngineOn;
+            @EngineOn.canceled += instance.OnEngineOn;
         }
 
         private void UnregisterCallbacks(IDrivingSimsActions instance)
@@ -531,12 +505,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @NextGear.started -= instance.OnNextGear;
             @NextGear.performed -= instance.OnNextGear;
             @NextGear.canceled -= instance.OnNextGear;
-            @SEngine.started -= instance.OnSEngine;
-            @SEngine.performed -= instance.OnSEngine;
-            @SEngine.canceled -= instance.OnSEngine;
-            @Clutch.started -= instance.OnClutch;
-            @Clutch.performed -= instance.OnClutch;
-            @Clutch.canceled -= instance.OnClutch;
+            @EngineOn.started -= instance.OnEngineOn;
+            @EngineOn.performed -= instance.OnEngineOn;
+            @EngineOn.canceled -= instance.OnEngineOn;
         }
 
         public void RemoveCallbacks(IDrivingSimsActions instance)
@@ -561,7 +532,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnTurn(InputAction.CallbackContext context);
         void OnBackGear(InputAction.CallbackContext context);
         void OnNextGear(InputAction.CallbackContext context);
-        void OnSEngine(InputAction.CallbackContext context);
-        void OnClutch(InputAction.CallbackContext context);
+        void OnEngineOn(InputAction.CallbackContext context);
     }
 }

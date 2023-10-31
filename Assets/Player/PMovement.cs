@@ -53,17 +53,34 @@ public class PMovement : MonoBehaviour
         _inputManager = GetComponent<InputManager>();
         currentRPM = 0;
         isEngineOn = true;
+        PMovement.CurrentGear = CurrentGearValue;
+
     }
 
     private void FixedUpdate()
     {
-
         UpdateWheel(frontWheel_R_Col, frontWheel_R);
         UpdateWheel(frontWheel_L_Col, frontWheel_L);
         UpdateWheel(backWheel_R_Col, backWheel_R);
         UpdateWheel(backWheel_L_Col, backWheel_L);
 
+        if (!isEngineOn)
+        {
+            backWheel_L_Col.brakeTorque = 5000;
+            backWheel_R_Col.brakeTorque = 5000;
+            frontWheel_L_Col.brakeTorque = 5000;
+            frontWheel_R_Col.brakeTorque = 5000;
+        }
+        else
+        {
+            backWheel_L_Col.brakeTorque = 0;
+            backWheel_R_Col.brakeTorque = 0;
+            frontWheel_L_Col.brakeTorque = 0;
+            frontWheel_R_Col.brakeTorque = 0;
+        }
+
         CurrentGearValue = PMovement.CurrentGear;
+        isEngineOn = _inputManager.EngineOnOff;
 
         Steering();
         RevEngine();
@@ -83,23 +100,25 @@ public class PMovement : MonoBehaviour
 
     private void Engine()
     {
-       
-        if (isEngineOn && Brakes != 1 && GearsRatio[CurrentGear] != 1 && Acceleration == 1)
+        if(isEngineOn)
         {
+            if (Brakes != 1 && GearsRatio[CurrentGear] != 1 && Acceleration == 1)
+            {
 
-            CurrentTorque = Acceleration * _motorPower * currentRPM * GearsRatio[CurrentGear] * Time.deltaTime;
-            backWheel_L_Col.motorTorque = CurrentTorque;
-            backWheel_R_Col.motorTorque = CurrentTorque;
+                CurrentTorque = Acceleration * _motorPower * currentRPM * GearsRatio[CurrentGear] * Time.deltaTime;
+                backWheel_L_Col.motorTorque = CurrentTorque;
+                backWheel_R_Col.motorTorque = CurrentTorque;
 
-            backWheel_L_Col.brakeTorque = 0;
-            backWheel_R_Col.brakeTorque = 0;
+                backWheel_L_Col.brakeTorque = 0;
+                backWheel_R_Col.brakeTorque = 0;
 
-        }else if(isEngineOn && Brakes ==1 && Acceleration ==1)
-        {
-            backWheel_L_Col.brakeTorque = 0;
-            backWheel_R_Col.brakeTorque = 0;
+            }
+            else if (Brakes == 1 && Acceleration == 1)
+            {
+                backWheel_L_Col.brakeTorque = 0;
+                backWheel_R_Col.brakeTorque = 0;
+            }
         }
-        
     }
 
     private void Brake()
@@ -118,32 +137,36 @@ public class PMovement : MonoBehaviour
 
     private void RevEngine()
     {
-        //Check if engine status 
-        if (isEngineOn && Acceleration != 1 && currentRPM <= minRPM)
+        if(isEngineOn)
         {
-            currentRPM = minRPM;
+            //Check if engine status 
+            if (Acceleration != 1 && currentRPM <= minRPM)
+            {
+                currentRPM = minRPM;
 
-        }
-        else if (isEngineOn && Acceleration != 1 && currentRPM > minRPM)
-        {
-            currentRPM -= currentRPM * Time.deltaTime;//Decrease the currentRPM to minRPM if Engine is On
+            }
+            else if (Acceleration != 1 && currentRPM > minRPM)
+            {
+                currentRPM -= currentRPM * Time.deltaTime;//Decrease the currentRPM to minRPM if Engine is On
+            }
+            
+            //Check if RPM has reached MAX RPM
+            if (currentRPM == maxRPM)
+            {
+                currentRPM = maxRPM;
+            }
+
+            //Check if Player is accelerating and if not accelerate if max RPM has been reached
+            if (Acceleration == 1 && currentRPM < maxRPM)
+            {
+                currentRPM += NeedleAccelerationForce * Time.deltaTime;
+            }
         }
         else if (!isEngineOn && currentRPM > 0)// Check if Engine is on to Turn Off RPM
         {
             currentRPM -= NeedleDecelerationForce * Time.deltaTime;//Decrease the currentRPM to minRPM if Engine is On
         }
 
-        //Check if RPM has reached MAX RPM
-        if (currentRPM == maxRPM)
-        {
-            currentRPM = maxRPM;
-        }
-
-        //Check if Player is accelerating and if not accelerate if max RPM has been reached
-        if (isEngineOn && Acceleration == 1 && currentRPM < maxRPM)
-        {
-            currentRPM += NeedleAccelerationForce * Time.deltaTime;
-        }
 
     }
 
@@ -162,7 +185,7 @@ public class PMovement : MonoBehaviour
             CurrentGear--;
         }
        
-        
+    
     }
 
     private void Steering()
@@ -192,20 +215,19 @@ public class PMovement : MonoBehaviour
         Quaternion rot = tr.rotation;
 
         col.GetWorldPose(out pos, out rot);
-        tr.position = pos;
-        tr.rotation = rot;
+        tr.SetPositionAndRotation(pos, rot);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Track") { IsAirborne = false; }
-        if (collision.gameObject.tag == "Ground") { ResetPos(); }
+        if (collision.gameObject.CompareTag("Track")) { IsAirborne = false; }
+        if (collision.gameObject.CompareTag("Ground")) { ResetPos(); }
         CanResetPos = false;
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Track") { IsAirborne = true; }
+        if (collision.gameObject.CompareTag("Track")) { IsAirborne = true; }
 
     }
 
@@ -214,13 +236,13 @@ public class PMovement : MonoBehaviour
         if (IsAirborne)
         {
             //_rb.drag = 1;
-            _rb.AddForce(-transform.up * DownForce * _rb.velocity.magnitude);
+            _rb.AddForce(_rb.velocity.magnitude * DownForce * -transform.up);
             _rb.constraints = RigidbodyConstraints.FreezeRotationY;
         }
         else
         {
             _rb.drag = 0;
-            _rb.AddForce(-transform.up * DownForce * _rb.velocity.magnitude);
+            _rb.AddForce(_rb.velocity.magnitude * DownForce * -transform.up);
             _rb.constraints = RigidbodyConstraints.None;
 
         }
@@ -228,7 +250,7 @@ public class PMovement : MonoBehaviour
 
     private void ResetPos()
     {
-        Debug.Log("Resetting Position");
+        //Debug.Log("Resetting Position");
         CanResetPos = true;
     }
 
