@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ada1b3c1001925a4fbc120e854e071d4
+guid: 4528afd9ffccc8947bccc012bcff2732
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
@@ -9,3 +9,10 @@ MonoImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 178338
+  packageName: Car AI (Pathfinding& Vehicle Behaviour)
+  packageVersion: 1.0
+  assetPath: Assets/CarAI/Scripts/CarAI.cs
+  uploadId: 490355

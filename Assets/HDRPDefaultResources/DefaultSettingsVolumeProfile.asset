@@ -170,7 +170,7 @@ MonoBehaviour:
     m_Value: 0.15
   m_SampleCount:
     m_OverrideState: 0
-    m_Value: 8
+    m_Value: 10
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,10 +222,10 @@ MonoBehaviour:
     m_Value: 1
   upperHemisphereLuxValue:
     m_OverrideState: 1
-    m_Value: 0.4660715
+    m_Value: 0.747522
   upperHemisphereLuxColor:
     m_OverrideState: 1
-    m_Value: {x: 0.18750614, y: 0.29181972, z: 0.5}
+    m_Value: {x: 0.15653497, y: 0.2522678, z: 0.5}
   desiredLuxValue:
     m_OverrideState: 0
     m_Value: 20000
@@ -240,7 +240,7 @@ MonoBehaviour:
     m_Value: 0
   hdriSky:
     m_OverrideState: 1
-    m_Value: {fileID: 8900000, guid: 8253d41e6e8b11a4cbe77a4f8f82934d, type: 3}
+    m_Value: {fileID: 8900000, guid: c01fc2bc2ee35bb40bc54ed635cd5d4b, type: 3}
   distortionMode:
     m_OverrideState: 0
     m_Value: 0
@@ -379,17 +379,17 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 1
   cloudType:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   skyAmbientMode:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 1
   windOrientation:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 58
   windSpeed:
     m_OverrideState: 0
-    m_Value: 100
+    m_Value: 117.55
   fogType:
     m_OverrideState: 0
     m_Value: 0
@@ -407,8 +407,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   mode:
-    m_OverrideState: 1
-    m_Value: 1
+    m_OverrideState: 0
+    m_Value: 3
   meteringMode:
     m_OverrideState: 0
     m_Value: 2
@@ -416,8 +416,8 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 1
   fixedExposure:
-    m_OverrideState: 0
-    m_Value: 0
+    m_OverrideState: 1
+    m_Value: 11.01664
   compensation:
     m_OverrideState: 0
     m_Value: 0
@@ -606,10 +606,10 @@ MonoBehaviour:
     m_Value: 0
   m_MaximumRadiusInPixels:
     m_OverrideState: 0
-    m_Value: 32
+    m_Value: 40
   m_BilateralUpsample:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 1
   m_DirectionCount:
     m_OverrideState: 0
     m_Value: 2
