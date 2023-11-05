@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2f9b3113bb6f364e95cd375da2b7ca4, type: 3}
   m_Name: Test2
   m_EditorClassIdentifier: 
-  carName: Greeny
+  carName: Blanc
   maximumSpeed: 4
   acceleration: 8
-  material: {fileID: 2100000, guid: 965c6d722664d5549a28bebc4d7514a3, type: 2}
+  material: {fileID: 2100000, guid: 104696f8b5f23d24586d858b68916bdc, type: 2}

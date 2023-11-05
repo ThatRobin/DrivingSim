@@ -16,6 +16,8 @@ public class AIDriverController : MonoBehaviour {
     public Vector3 direction;
     public List<AIDriverController> boidsInScene;
 
+    public MeshRenderer meshRenderer;
+
 
     public float moveToCenterStrength;//factor by which boid will try toward center Higher it is, higher the turn rate to move to the center
     public float localBoidsDistance;//effective distance to calculate the center
@@ -35,7 +37,8 @@ public class AIDriverController : MonoBehaviour {
 
     private void Start()
     {
-        this.GetComponent<MeshRenderer>().material = componentHolder.material;
+        meshRenderer.materials[0] = componentHolder.material;
+        
         agent.acceleration = componentHolder.acceleration;
         agent.speed = componentHolder.maximumSpeed;
         

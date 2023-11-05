@@ -88,7 +88,7 @@ public class UI_Script : MonoBehaviour
         SNeedle.transform.eulerAngles = new Vector3(0f, 0f, GetSpeed());
 
         SteeringWheel.transform.eulerAngles = new Vector3(0f,0f,inputManager.Turn.x * 45f);
-        Debug.Log(inputManager.Turn.x);
+        //Debug.Log(inputManager.Turn.x);
 
     }
 

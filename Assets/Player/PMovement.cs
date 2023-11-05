@@ -18,7 +18,7 @@ public class PMovement : MonoBehaviour
     public bool CanResetPos;
 
     // Rev And Engine Temp Varible Area ;;
-    public float maxRPM;
+    public float maxRPM = 2000;
     public float minRPM = 0f;
     [Range(0, 6)]
     public int CurrentGearValue;

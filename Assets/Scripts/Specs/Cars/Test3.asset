@@ -15,4 +15,4 @@ MonoBehaviour:
   carName: Cruiser
   maximumSpeed: 3.7
   acceleration: 8.9
-  material: {fileID: 2100000, guid: 908e8ca6b12f5524b9473e98067164dc, type: 2}
+  material: {fileID: 2100000, guid: 07f44fe3e9c462146a7769b976c50ec4, type: 2}

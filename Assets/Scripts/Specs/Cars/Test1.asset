@@ -15,4 +15,4 @@ MonoBehaviour:
   carName: Rouge
   maximumSpeed: 4.2
   acceleration: 8.2
-  material: {fileID: 2100000, guid: e4290f15618c609418aaa293fc3a7b47, type: 2}
+  material: {fileID: 2100000, guid: c4c2ee3e832cffd48bb9d156c2b21376, type: 2}
