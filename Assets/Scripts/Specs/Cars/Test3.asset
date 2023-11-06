@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Test3
   m_EditorClassIdentifier: 
   carName: Cruiser
-  maximumSpeed: 3.7
+  maximumSpeed: 15
   acceleration: 8.9
   material: {fileID: 2100000, guid: 07f44fe3e9c462146a7769b976c50ec4, type: 2}

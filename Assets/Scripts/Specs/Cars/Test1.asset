@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Test1
   m_EditorClassIdentifier: 
   carName: Rouge
-  maximumSpeed: 4.2
+  maximumSpeed: 15
   acceleration: 8.2
   material: {fileID: 2100000, guid: c4c2ee3e832cffd48bb9d156c2b21376, type: 2}

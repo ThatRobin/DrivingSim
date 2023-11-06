@@ -57,6 +57,7 @@ public class PMovement : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _rb.centerOfMass = new Vector3(_rb.centerOfMass.x, -1, _rb.centerOfMass.z);
         _inputManager = GetComponent<InputManager>();
         currentRPM = 0;
         isEngineOn = true;
@@ -100,6 +101,9 @@ public class PMovement : MonoBehaviour
     private void Update()
     {
         Acceleration = _inputManager.Acceleration;
+        if(Acceleration != 1) {
+            CurrentTorque = 0;
+        }
         Brakes = _inputManager.Brake;
         Current_Speed = _rb.velocity.magnitude;
        
@@ -109,7 +113,7 @@ public class PMovement : MonoBehaviour
     {
         if(isEngineOn)
         {
-            if (Brakes != 1 && GearsRatio[CurrentGear] != 1 && Acceleration == 1)
+            if (Brakes != 1 && GearsRatio[CurrentGear] != 1 && Acceleration ==1)
             {
 
                 CurrentTorque = Acceleration * _motorPower * currentRPM * GearsRatio[CurrentGear] * Time.deltaTime;
@@ -119,6 +123,12 @@ public class PMovement : MonoBehaviour
                 backWheel_L_Col.brakeTorque = 0;
                 backWheel_R_Col.brakeTorque = 0;
 
+            }
+            if (Acceleration != 1)
+            {
+                CurrentTorque = 0;
+                backWheel_L_Col.motorTorque = CurrentTorque;
+                backWheel_R_Col.motorTorque = CurrentTorque;
             }
             else if (Brakes == 1 && Acceleration == 1)
             {
@@ -130,15 +140,19 @@ public class PMovement : MonoBehaviour
 
     private void Brake()
     {
-        if(Brakes == 1)
+        if(Brakes != -1)
         {
             backWheel_L_Col.brakeTorque += BrakeForce * Time.deltaTime;
             backWheel_R_Col.brakeTorque += BrakeForce * Time.deltaTime;
+            frontWheel_L_Col.brakeTorque += BrakeForce / 5F * Time.deltaTime;
+            frontWheel_R_Col.brakeTorque += BrakeForce / 5F * Time.deltaTime;
         }
         else
         {
             backWheel_L_Col.brakeTorque = 0;
             backWheel_R_Col.brakeTorque = 0;
+            frontWheel_L_Col.brakeTorque = 0;
+            frontWheel_R_Col.brakeTorque = 0;
         }
     }
 
@@ -198,22 +212,8 @@ public class PMovement : MonoBehaviour
     private void Steering()
     {
         Vector2 turning = _inputManager.Turn;
-        if (turning.x == 1)
-        {
-            frontWheel_L_Col.steerAngle = TurningAngle * Time.deltaTime;
-            frontWheel_R_Col.steerAngle = TurningAngle * Time.deltaTime;
-
-        }
-        else if (turning.x == -1)
-        {
-            frontWheel_L_Col.steerAngle = -TurningAngle * Time.deltaTime;
-            frontWheel_R_Col.steerAngle = -TurningAngle * Time.deltaTime;
-        }
-        else if (turning.x == 0)
-        {
-            frontWheel_L_Col.steerAngle = 0 * Time.deltaTime;
-            frontWheel_R_Col.steerAngle = 0 * Time.deltaTime;
-        }
+        frontWheel_L_Col.steerAngle = TurningAngle * turning.x * Time.deltaTime;
+        frontWheel_R_Col.steerAngle = TurningAngle * turning.x * Time.deltaTime;
     }
 
     private void UpdateWheel(WheelCollider col, Transform tr)
@@ -248,7 +248,7 @@ public class PMovement : MonoBehaviour
         }
         else
         {
-            _rb.drag = 0;
+            //_rb.drag = 0;
             _rb.AddForce(_rb.velocity.magnitude * DownForce * -transform.up);
             _rb.constraints = RigidbodyConstraints.None;
 

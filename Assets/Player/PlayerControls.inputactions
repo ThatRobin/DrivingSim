@@ -88,7 +88,7 @@
                     "id": "54a8a4ba-82cb-4a7e-b2bf-4ea46f5044c7",
                     "path": "<Joystick>/rz",
                     "interactions": "",
-                    "processors": "Invert,Normalize(min=-1,max=1,zero=-1)",
+                    "processors": "Invert,Normalize(max=1)",
                     "groups": "",
                     "action": "Accelerate",
                     "isComposite": false,
@@ -119,9 +119,9 @@
                 {
                     "name": "",
                     "id": "c36642e2-4506-4b3e-a774-106be9933547",
-                    "path": "\t<Joystick>/stick/y",
+                    "path": "<Joystick>/stick/y",
                     "interactions": "",
-                    "processors": "Normalize(min=-1,max=1,zero=1)",
+                    "processors": "Normalize(max=1,zero=-1)",
                     "groups": "",
                     "action": "Brake",
                     "isComposite": false,
@@ -139,7 +139,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "left",
+                    "name": "Up",
                     "id": "09c0d9bc-dc00-4170-90e9-885ba0fe447a",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
@@ -150,7 +150,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
+                    "name": "Down",
                     "id": "42723608-3223-4e07-a84b-5440521b67e3",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
@@ -161,20 +161,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Stick [Joystick]",
-                    "id": "a401b1cf-38ff-4920-a51a-3a2c0c26c856",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Turn",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "left",
-                    "id": "e2975255-f007-4d79-8775-3096111d5a38",
-                    "path": "<Joystick>/stick/left",
+                    "name": "Left",
+                    "id": "174e8c91-8fee-4726-81ce-9e3a3f881dc5",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -183,9 +172,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "e304b91d-b116-4df5-bb28-53883736a8a7",
-                    "path": "<Joystick>/stick/right",
+                    "name": "Right",
+                    "id": "604fe0e2-6be9-426c-b0c4-7d93960b9d94",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -205,7 +194,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "left",
+                    "name": "Up",
                     "id": "882fadca-a503-43c4-96b2-ae1074e55c9b",
                     "path": "<Keyboard>/a",
                     "interactions": "",
@@ -216,9 +205,31 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
+                    "name": "Down",
                     "id": "6ba7bec7-52b5-416b-b552-bb3dddea49f2",
                     "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Left",
+                    "id": "c36c5223-a1c4-4ea3-8379-38cdc10677f0",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Right",
+                    "id": "60ed9c80-97e4-4e9a-8c6c-a4b3ff1cb077",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -238,7 +249,7 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "up",
+                    "name": "Up",
                     "id": "58b1031a-d33b-43b1-8526-d831fcf05f8b",
                     "path": "",
                     "interactions": "",
@@ -249,7 +260,7 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
+                    "name": "Down",
                     "id": "622fd30c-9f67-438d-a3a0-478e741cf028",
                     "path": "",
                     "interactions": "",
@@ -260,9 +271,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
-                    "id": "ba466950-ed7b-4caa-afda-5113b522734e",
-                    "path": "<Keyboard>/a",
+                    "name": "Left",
+                    "id": "8703045b-f767-4876-9098-e35d5bc79dac",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -271,15 +282,26 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "right",
-                    "id": "9168b378-aa1b-40ed-bb68-e32c1c47eef3",
-                    "path": "<Keyboard>/d",
+                    "name": "Right",
+                    "id": "1741541f-5749-4ced-9f43-e08289d3aec9",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Turn",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "25c80334-fbf2-4be4-b452-b19ebad6d0d5",
+                    "path": "<Joystick>/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "",
@@ -339,7 +361,7 @@
                 {
                     "name": "",
                     "id": "073c3eee-bbdf-4ea5-a21d-90884b2d02d3",
-                    "path": "<Gamepad>/buttonSouth",
+                    "path": "<HID::44F B684>/button6",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Test4
   m_EditorClassIdentifier: 
   carName: Pop
-  maximumSpeed: 5
+  maximumSpeed: 15
   acceleration: 8.5
   material: {fileID: 2100000, guid: 74196cf5d503c14488ae1ef1dbc6c9a4, type: 2}

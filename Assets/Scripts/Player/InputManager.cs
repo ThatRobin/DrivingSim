@@ -69,9 +69,15 @@ namespace UnityTutorial.Manager
 
         }
 
+        private void Update()
+        {
+            //Debug.Log(_TurnAction.triggered);
+        }
+
         private void onTurn(InputAction.CallbackContext context)
         {
             Turn = context.ReadValue<Vector2>();
+           // Debug.Log(context.ReadValue<double>());
         }
 
         private void onAccelerate(InputAction.CallbackContext context)
